@@ -18,7 +18,7 @@ interface Bookmark {
 }
 
 export function Dashboard() {
-  const [activeTab, setActiveTab] = useState('calculator');
+  const [activeTab, setActiveTab] = useState('bookmarks');
   const [number1, setNumber1] = useState('');
   const [number2, setNumber2] = useState('');
   const [operation, setOperation] = useState('percentage');
@@ -73,7 +73,7 @@ export function Dashboard() {
 
     switch (operation) {
       case 'percentage':
-        setResult(`${(n1 * n2) / 100}`);
+        setResult(`${(n1 * n2) / 100}%`);
         break;
       case 'add':
         setResult(`${n1 + n2}`);
@@ -233,15 +233,15 @@ export function Dashboard() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-8">
               <button
-                onClick={() => setActiveTab('calculator')}
+                onClick={() => setActiveTab('bookmarks')}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 ${
-                  activeTab === 'calculator' 
+                  activeTab === 'bookmarks' 
                     ? 'bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/30' 
                     : 'hover:bg-gray-700'
                 }`}
               >
-                <Calculator className="w-5 h-5" />
-                <span>Rechner</span>
+                <LinkIcon className="w-5 h-5" />
+                <span>Lesezeichen</span>
               </button>
               <button
                 onClick={() => setActiveTab('todos')}
@@ -255,15 +255,15 @@ export function Dashboard() {
                 <span>Todos</span>
               </button>
               <button
-                onClick={() => setActiveTab('bookmarks')}
+                onClick={() => setActiveTab('calculator')}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-200 ${
-                  activeTab === 'bookmarks' 
+                  activeTab === 'calculator' 
                     ? 'bg-gradient-to-r from-red-600 to-red-700 shadow-lg shadow-red-500/30' 
                     : 'hover:bg-gray-700'
                 }`}
               >
-                <LinkIcon className="w-5 h-5" />
-                <span>Lesezeichen</span>
+                <Calculator className="w-5 h-5" />
+                <span>Rechner</span>
               </button>
             </div>
             <button
@@ -539,7 +539,7 @@ export function Dashboard() {
             {/* Embedded View Modal */}
             {showEmbedded && (
               <div className="fixed inset-0 bg-black/75 flex items-center justify-center p-4 z-50">
-                <div className="bg-gray-800 rounded-2xl p-4 w-full max-w-4xl h-[70vh] flex flex-col">
+                <div className="bg-gray-800 rounded-2xl p-4 w-full max-w-4xl h-[80vh] flex flex-col">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-semibold">
                       {bookmarks.find(b => b.id === showEmbedded)?.title}
